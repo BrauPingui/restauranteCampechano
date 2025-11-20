@@ -15,13 +15,13 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
 {
   // Desayunos
   private JLabel etiquetaTitulo, etiquetaDesayunos,etiquetaComidas,etiquetaCena,etiquetaPostre;
-  private JButton botonSalir;
+  private JButton botonSalir,botonSalirPago;
 
   private JButton pedirCafe,quitarCafe,pedir1,quitar1,pedir2,quitar2,pedir3,quitar3, pedir4,quitar4,botonPagar;
   private JButton pedir5,quitar5,pedir6, quitar6, pedir7,quitar7,pedir8,quitar8,pedir9,quitar9,pedir10,quitar10,pedir11,quitar11;
   private JPanel panelMenu,panelPostres;
   // Campos de texto se declaran a nivel de instancia, aunque se inicializan en PantallaPagar
-  private JTextField campoEfectivo,campoCambio,campoNumeroTarjeta,campoCantidad1,campoCantidad2,campoCVV,camporVigencia,campoRFC;
+  private JTextField campoEfectivo,campoCambio,campoNumeroTarjeta,campoCantidad1,campoCantidad2,campoCVV,camporVigencia,campoRFC,campoNombreTarjeta;
   private JTextField campoNumeroCuenta,campoNombre,campoDineroTarjeta,campoDineroTransferencia;
   private ImageIcon ottoLogo;
   
@@ -58,17 +58,17 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
         // Dibujo de línea
         g.drawLine(50, 54, 850, 54); 
         g.setColor(new Color(180,140,80));  
-        for (int i = 0; i < getWidth(); i += 40)
+        for (int i=0; i<getWidth(); i += 40)
         {
             g.fillRect(i, 0, 35, 25);        
-            g.fillRect(i, getHeight()-30, 35, 25); // Bloques abajo
+            g.fillRect(i,getHeight()-30, 35, 25); // Bloques abajo
         }
-        for (int j = 0; j < getHeight(); j += 40) 
+        for (int j=0; j<getHeight(); j += 40) 
         {
             g.fillRect(0, j, 25, 35);        
             g.fillRect(getWidth() - 30, j, 25, 35); // Bloques derecha
         }
-        g.setColor(new Color(200, 180, 140));
+        g.setColor(new Color(0, 0, 0));
         g.drawLine(450, 200, 450, 530); // Desayuno/Comida
         g.drawLine(100, 550, 800, 550); // Comida/Cena
         g.drawLine(350, 680, 350, 880); // Cenas
@@ -84,18 +84,19 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
         g.setColor(new Color(180, 140, 80));  
 
         
-        for (int i = 0; i < getWidth(); i += 40) 
+        for (int i=0; i<getWidth(); i+=40) 
         {
             g.fillRect(i, 0, 35, 25);                  
             g.fillRect(i, getHeight() - 30, 35, 25);   
         }
 
         // Bloques laterales
-        for (int j = 0; j < getHeight(); j += 40) 
+        for (int j=0; j<getHeight(); j+=40) 
         {
             g.fillRect(0, j, 25, 35);                  
             g.fillRect(getWidth() - 30, j, 25, 35);    
         }
+        g.setColor(new Color(0, 0, 0));
         g.drawLine(330, 100, 330, 400); // Postres
         g.drawLine(600, 100, 600, 400); // Postres
       }
@@ -119,6 +120,7 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
     panelMenu.add(botonSalir);
     botonSalir.addActionListener(this);
 
+  
     
     int anchoImagen = 150;
     int altoImagen = 80;
@@ -236,12 +238,12 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
 
     // PAMPANO EMPAPELADO
     pedir6=new JButton("Pedir");
-    pedir6.setBounds(220,740,70,20);
+    pedir6.setBounds(85,730,70,20);
     pedir6.addActionListener(this);
     panelMenu.add(pedir6);
 
     quitar6=new JButton("Quitar");
-    quitar6.setBounds(240,770,80,20);
+    quitar6.setBounds(240,730,80,20);
     quitar6.addActionListener(this);
     panelMenu.add(quitar6);
 
@@ -249,17 +251,17 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
     JLabel imgPampanoE = new JLabel();
     ImageIcon iconPampanoE = new ImageIcon(new ImageIcon("./pampano-empapelado.jpg").getImage().getScaledInstance(anchoImagen, altoImagen, Image.SCALE_DEFAULT));
     imgPampanoE.setIcon(iconPampanoE);
-    imgPampanoE.setBounds(100, 720, anchoImagen, altoImagen);
+    imgPampanoE.setBounds(115, 780, anchoImagen, altoImagen);
     panelMenu.add(imgPampanoE);
 
     // Tortas
     pedir7=new JButton("Pedir");
-    pedir7.setBounds(510,740,70,20);
+    pedir7.setBounds(390,730,70,20);
     pedir7.addActionListener(this);
     panelMenu.add(pedir7);
     
     quitar7=new JButton("Quitar");
-    quitar7.setBounds(510,770,80,20);
+    quitar7.setBounds(510,730,80,20);
     quitar7.addActionListener(this);
     panelMenu.add(quitar7);
 
@@ -267,17 +269,17 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
     JLabel imgTortas = new JLabel();
     ImageIcon iconTortas = new ImageIcon(new ImageIcon("./torta.jpg").getImage().getScaledInstance(anchoImagen, altoImagen, Image.SCALE_DEFAULT));
     imgTortas.setIcon(iconTortas);
-    imgTortas.setBounds(390, 690, anchoImagen, altoImagen);
+    imgTortas.setBounds(405, 780, anchoImagen, altoImagen);
     panelMenu.add(imgTortas);
 
     // CAMARONES AL COCO
     pedir8=new JButton("Pedir");
-    pedir8.setBounds(760,740,70,20);
+    pedir8.setBounds(650,730,70,20);
     pedir8.addActionListener(this);
     panelMenu.add(pedir8);
 
     quitar8=new JButton("Quitar");
-    quitar8.setBounds(780,770,80,20);
+    quitar8.setBounds(780,730,80,20);
     quitar8.addActionListener(this);
     panelMenu.add(quitar8);
 
@@ -285,17 +287,17 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
     JLabel imgCamaronesC = new JLabel();
     ImageIcon iconCamaronesC = new ImageIcon(new ImageIcon("./camarones-al-coco.jpg").getImage().getScaledInstance(anchoImagen, altoImagen, Image.SCALE_DEFAULT));
     imgCamaronesC.setIcon(iconCamaronesC);
-    imgCamaronesC.setBounds(650, 690, anchoImagen, altoImagen);
+    imgCamaronesC.setBounds(650, 780, anchoImagen, altoImagen);
     panelMenu.add(imgCamaronesC);
 
     // Fraile
     pedir9=new JButton("Pedir");
-    pedir9.setBounds(210,220,70,20);
+    pedir9.setBounds(191,220,70,20);
     pedir9.addActionListener(this);
     panelPostres.add(pedir9);
 
     quitar9=new JButton("Quitar");
-    quitar9.setBounds(110,220,80,20);
+    quitar9.setBounds(102,220,80,20);
     quitar9.addActionListener(this);
     panelPostres.add(quitar9);
 
@@ -326,19 +328,19 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
 
     // Jamoncillos
     pedir11=new JButton("Pedir");
-    pedir11.setBounds(760,220,70,20);
+    pedir11.setBounds(730,220,70,20);
     pedir11.addActionListener(this);
     panelPostres.add(pedir11);
 
     quitar11=new JButton("Quitar");
-    quitar11.setBounds(660,220,80,20);
+    quitar11.setBounds(620,220,80,20);
     quitar11.addActionListener(this);
     panelPostres.add(quitar11);
     // IMAGEN JAMONCILLOS
     JLabel imgJamonci = new JLabel();
     ImageIcon iconJamonci = new ImageIcon(new ImageIcon("./jamoncillo-dulce-mexicano.jpg").getImage().getScaledInstance(anchoImagen, altoImagen, Image.SCALE_DEFAULT));
     imgJamonci.setIcon(iconJamonci);
-    imgJamonci.setBounds(680, 250, anchoImagen, altoImagen);
+    imgJamonci.setBounds(630, 250, anchoImagen, altoImagen);
     panelPostres.add(imgJamonci);
     
     // Botón Pagar 
@@ -384,12 +386,63 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
     etiquetaOtto.setIcon(ottoLogo);
     etiquetaOtto.setBounds(412, 68, 100, 100);
     panelMenu.add(etiquetaOtto);
+    JPanel panelHorario = new JPanel();
+    panelHorario.setLayout(new BoxLayout(panelHorario, BoxLayout.Y_AXIS)); 
+    panelHorario.setBackground(new Color(255, 200, 120)); 
     
-    Font fuenteMenu = new Font("Inter", Font.PLAIN, 14);
+    panelHorario.setBounds(1035, 520, 850, 400); 
+    
+    // Título del Marco
+    panelHorario.setBorder(BorderFactory.createTitledBorder(
+        BorderFactory.createLineBorder(Color.BLACK, 2), // Borde negro más grueso
+        "Atención al Cliente",
+        TitledBorder.CENTER, // Centrar el título
+        TitledBorder.TOP,
+        new Font("Inter", Font.BOLD, 20) // Fuente más grande para el título del marco
+    ));
+    
+    ventana.add(panelHorario);
+
+    // Fuentes más grandes
+    Font fuenteHorarioTitulo = new Font("Inter", Font.BOLD, 48); // Título de la etiqueta
+    Font fuenteHorarioTexto = new Font("Inter", Font.PLAIN, 36); // Texto de los horarios
+
+    // Etiqueta Título
+    JLabel lblHorarioTitulo = new JLabel("Horarios de Atención:");
+    lblHorarioTitulo.setFont(fuenteHorarioTitulo);
+    lblHorarioTitulo.setAlignmentX(Component.CENTER_ALIGNMENT); 
+    panelHorario.add(Box.createVerticalStrut(15)); // Espacio superior
+    panelHorario.add(lblHorarioTitulo);
+    panelHorario.add(Box.createVerticalStrut(10)); // Separación
+
+    // Etiqueta Días
+    JLabel lblHorarioDias = new JLabel("Lunes a Sábado:");
+    lblHorarioDias.setFont(fuenteHorarioTexto);
+    lblHorarioDias.setAlignmentX(Component.CENTER_ALIGNMENT);
+    panelHorario.add(lblHorarioDias);
+    
+    // Etiqueta Horas
+    JLabel lblHorarioHoras = new JLabel("12:00 pm - 12:00 am");
+    lblHorarioHoras.setFont(fuenteHorarioTexto);
+    lblHorarioHoras.setAlignmentX(Component.CENTER_ALIGNMENT);
+    panelHorario.add(lblHorarioHoras);
+
+    // Etiqueta telefono
+    JLabel lblTelefono = new JLabel ("NÚMERO DE ATENCIÓN");
+    lblTelefono.setFont(fuenteHorarioTitulo);
+    lblTelefono.setAlignmentX(Component.CENTER_ALIGNMENT);
+    panelHorario.add(lblTelefono);
+
+    JLabel lblTelefonoN = new JLabel ("951-345-2932");
+    lblTelefonoN.setFont(fuenteHorarioTexto);
+    lblTelefonoN.setAlignmentX(Component.CENTER_ALIGNMENT);
+    panelHorario.add(lblTelefonoN);
+    
+    Font fuenteMenu = new Font("Inter", Font.PLAIN, 20);
 
     // Desayunos
-    JLabel lblCafe = new JLabel("Café con Campechanas) - $80");
-    lblCafe.setBounds(270, 210, 250, 20); 
+    JLabel lblCafe = new JLabel("Campechanas - $80");
+    lblCafe.setBounds(240, 205, 250, 20); 
     lblCafe.setFont(fuenteMenu);
     panelMenu.add(lblCafe);
 
@@ -405,49 +458,49 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
     
     // Comidas
     JLabel lblComida1 = new JLabel("Cochinita Pibil - $70");
-    lblComida1.setBounds(710, 210, 250, 20); 
+    lblComida1.setBounds(700, 210, 250, 20); 
     lblComida1.setFont(fuenteMenu);
     panelMenu.add(lblComida1);
 
-    JLabel lblComida2 = new JLabel("Tacos Campechanos - $130");
-    lblComida2.setBounds(710, 330, 250, 20); 
+    JLabel lblComida2 = new JLabel("Tacos Campech - $130");
+    lblComida2.setBounds(640, 310, 250, 20); 
     lblComida2.setFont(fuenteMenu);
     panelMenu.add(lblComida2);
 
     JLabel lblComida3 = new JLabel("Torta BeefSteak - $130");
-    lblComida3.setBounds(710, 450, 250, 20); 
+    lblComida3.setBounds(630, 410, 250, 20); 
     lblComida3.setFont(fuenteMenu);
     panelMenu.add(lblComida3);
     
     // Cenas
-    JLabel lblCena1 = new JLabel("Pampano Empapelado - $170");
-    lblCena1.setBounds(190, 720, 250, 20);
+    JLabel lblCena1 = new JLabel("Pampano Empap - $170");
+    lblCena1.setBounds(100, 680, 250, 20);
     lblCena1.setFont(fuenteMenu);
     panelMenu.add(lblCena1);
 
-    JLabel lblCena2 = new JLabel("Tortas de Jamon CLaveteado - $120");
-    lblCena2.setBounds(480, 720, 250, 20); 
+    JLabel lblCena2 = new JLabel("Jamon CLaveteado - $120");
+    lblCena2.setBounds(362, 680, 250, 20); 
     lblCena2.setFont(fuenteMenu);
     panelMenu.add(lblCena2);
 
     JLabel lblCena3 = new JLabel("Camarones al Coco - $180");
-    lblCena3.setBounds(730, 720, 250, 20); 
+    lblCena3.setBounds(635, 680, 250, 20); 
     lblCena3.setFont(fuenteMenu);
     panelMenu.add(lblCena3);
 
     // Postres
     JLabel lblPostre1 = new JLabel("Fraile - $80");
-    lblPostre1.setBounds(180, 200, 200, 20); 
+    lblPostre1.setBounds(120, 200, 200, 20); 
     lblPostre1.setFont(fuenteMenu);
     panelPostres.add(lblPostre1);
 
-    JLabel lblPostre2 = new JLabel("Flan de Rompope - $80");
-    lblPostre2.setBounds(460, 200, 200, 20);
+    JLabel lblPostre2 = new JLabel("Flan Rompope - $80");
+    lblPostre2.setBounds(390, 200, 200, 20);
     lblPostre2.setFont(fuenteMenu);
     panelPostres.add(lblPostre2);
 
     JLabel lblPostre3 = new JLabel("Jamoncillo - $180");
-    lblPostre3.setBounds(750, 200, 200, 20);
+    lblPostre3.setBounds(650, 200, 200, 20);
     lblPostre3.setFont(fuenteMenu);
     panelPostres.add(lblPostre3);
     
@@ -554,7 +607,7 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
     private JRadioButton rbCredito,rbDebito;
     private ButtonGroup grupoTarjeta;
     private JLabel etiquetaPagar,etiquetaCantidadTarjeta,etiquetaCantidadTransferencia, etiquetaEfectivo, etiquetaTarjeta,etiquetaTransferencia,etiquetaRFC;
-    private JLabel ingreseEfectivo,etiquetaNumeroTarjeta,etiquetaCVV,etiquetaVigencia, darCambio,etiquetaTotalPagar,etiquetaNumeroCuenta,etiquetaNombre;
+    private JLabel ingreseEfectivo,etiquetaNumeroTarjeta,etiquetaCVV,etiquetaVigencia, darCambio,etiquetaTotalPagar,etiquetaNumeroCuenta,etiquetaNombre,etiquetaNombreTarjeta;
     private JButton ingresarEfectivo,botonValidarTarjeta,botonValidarTransferencia;
 
     public PantallaPagar()
@@ -573,6 +626,7 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
       campoNumeroCuenta = new JTextField(18);
       campoNombre = new JTextField(20);
       campoDineroTransferencia = new JTextField(10);
+      campoNombreTarjeta=new JTextField(10);
       
       Font fuentePagar= new Font("Inter",Font.BOLD,18);
 
@@ -611,12 +665,17 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
       darCambio.setBounds(120,260,200,30);
       add(darCambio);
 
+      etiquetaNombreTarjeta=new JLabel("Ingrese nombre");
+      etiquetaNombreTarjeta.setFont(fuentePagar);
+      etiquetaNombreTarjeta.setBounds(430,80,200,20);
+      add(etiquetaNombreTarjeta);
+
       rbCredito=new JRadioButton("Crédito");
-      rbCredito.setBounds(400,120,200,20); 
+      rbCredito.setBounds(400,140,200,20); 
       rbCredito.setFont(fuentePagar);
       
       rbDebito=new JRadioButton("Débito");
-      rbDebito.setBounds(500,120,200,20); 
+      rbDebito.setBounds(500,140,200,20); 
       rbDebito.setFont(fuentePagar);
 
       grupoTarjeta=new ButtonGroup();
@@ -627,22 +686,23 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
 
       etiquetaNumeroTarjeta=new JLabel("No.Tarjeta");
       etiquetaNumeroTarjeta.setFont(fuentePagar);
-      etiquetaNumeroTarjeta.setBounds(430,150,200,20);
+      etiquetaNumeroTarjeta.setBounds(430,180,200,20);
       add(etiquetaNumeroTarjeta);
 
       etiquetaVigencia=new JLabel("Vigencia (MM/AA)");
       etiquetaVigencia.setFont(fuentePagar);
-      etiquetaVigencia.setBounds(430,210,200,20);
+      etiquetaVigencia.setBounds(430,240,200,20);
       add(etiquetaVigencia);
+
 
       etiquetaCVV=new JLabel("Ingrese CVV");
       etiquetaCVV.setFont(fuentePagar);
-      etiquetaCVV.setBounds(430,270,200,20);
+      etiquetaCVV.setBounds(430,290,200,20);
       add(etiquetaCVV);
 
-      etiquetaCantidadTarjeta=new JLabel("Ingrese cantidad");
+      etiquetaCantidadTarjeta=new JLabel("Cantidad");
       etiquetaCantidadTarjeta.setFont(fuentePagar);
-      etiquetaCantidadTarjeta.setBounds(430,330,200,20);
+      etiquetaCantidadTarjeta.setBounds(430,337,200,20);
       add(etiquetaCantidadTarjeta);
 
       etiquetaNumeroCuenta=new JLabel("Ingrese No.Cuenta");
@@ -655,7 +715,7 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
       etiquetaNombre.setBounds(770,150,200,30);
       add(etiquetaNombre);
 
-      etiquetaCantidadTransferencia=new JLabel("Ingresar Cantidad");
+      etiquetaCantidadTransferencia=new JLabel("Cantidad");
       etiquetaCantidadTransferencia.setFont(fuentePagar);
       etiquetaCantidadTransferencia.setBounds(770,210,200,30);
       add(etiquetaCantidadTransferencia);
@@ -667,6 +727,9 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
 
       campoDineroTransferencia.setFont(fuentePagar);
       campoDineroTransferencia.setBounds(770,240,200,30);
+      campoDineroTransferencia.setEditable(false);
+      campoDineroTransferencia.setEnabled(true);
+      campoDineroTransferencia.setText(String.format("%.2f", total));
       add(campoDineroTransferencia);
 
       campoNumeroCuenta.setFont(fuentePagar);
@@ -678,19 +741,22 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
       add(campoNombre);
 
       campoNumeroTarjeta.setFont(fuentePagar);
-      campoNumeroTarjeta.setBounds(430,170,200,30);
+      campoNumeroTarjeta.setBounds(430,210,200,30);
       add(campoNumeroTarjeta);
       
       camporVigencia.setFont(fuentePagar);
-      camporVigencia.setBounds(430,230,200,30);
+      camporVigencia.setBounds(430,260,200,30);
       add(camporVigencia);
 
       campoCVV.setFont(fuentePagar);
-      campoCVV.setBounds(430,300,200,30);
+      campoCVV.setBounds(430,310,200,30);
       add(campoCVV);
 
       campoDineroTarjeta.setFont(fuentePagar);
       campoDineroTarjeta.setBounds(430,360,200,30);
+      campoDineroTarjeta.setEditable(false);
+      campoDineroTarjeta.setEnabled(true);
+      campoDineroTarjeta.setText(String.format("$%.2f",total));
       add(campoDineroTarjeta);
 
       campoRFC=new JTextField(13);
@@ -708,11 +774,40 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
       campoCambio.setEnabled(true); 
       add(campoCambio);
 
+      campoNombreTarjeta=new JTextField(14);
+      campoNombreTarjeta.setBounds(430,110,200,30);
+      campoNombreTarjeta.setFont(fuentePagar);
+      add(campoNombreTarjeta);
+
       botonValidarTransferencia=new JButton("Ingresar");
       botonValidarTransferencia.setBounds(770,340,200,30);
       botonValidarTransferencia.setFont(fuentePagar);
       add(botonValidarTransferencia);
-      
+
+      botonSalirPago= new JButton("Salir");
+      botonSalirPago.setBounds(770,500,200,30);
+      botonSalirPago.setFont(fuentePagar);
+      add(botonSalirPago);
+      botonSalirPago.addActionListener(new ActionListener()
+      {
+        public void actionPerformed(ActionEvent e)
+        {
+          total=0.0;
+          cafe=0;
+          primero=0;
+          segundo=0;
+          tercero=0;
+          cuarto=0;
+          quinto=0;
+          sexto=0;
+          septimo=0;
+          octavo=0;
+          noveno=0;
+          decimo=0;
+          onceavo=0;
+          dispose();
+        }
+      });
       // Listener para transferencia
       botonValidarTransferencia.addActionListener(new ActionListener()
       {
@@ -737,34 +832,29 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
               return;
             }
           }
-          if(!rfc.matches("\\d{13}"))
+          if(!rfc.matches("[A-Za-z0-9]{13}"))
           {
             JOptionPane.showMessageDialog(null,"RFC inválido");
             return;
           }
-          double monto;
+          double monto=total;
+          
           try
           {
-            monto=Double.parseDouble(montoStrU);
-            if(monto<=0)
-            {
-              JOptionPane.showMessageDialog(null,"Cantidad inválida.");
-              return;
-            }
-            if(monto<total)
-            {
-              JOptionPane.showMessageDialog(null,"Falta dinero.");
-              return;
-            }
+              monto=Double.parseDouble(montoStrU);
+              if(monto < total)
+              {
+                JOptionPane.showMessageDialog(null,"El monto transferido no cubre el total a pagar.");
+                return;
+              }
           }
           catch(NumberFormatException ex)
           {
             JOptionPane.showMessageDialog(null,"Valor inválido en el monto.");
             return;
           }
-
           JOptionPane.showMessageDialog(null,"Transferencia exitosa");
-          campoCambio.setText(String.format("%.2f",monto-total));
+          
 
           // *** ABRIR RECIBO ***
           // Se pasan los 12 contadores de cantidad
@@ -789,7 +879,16 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
           String cvv=campoCVV.getText().trim();
           String vigencia=camporVigencia.getText().trim();
           String montoStr=campoDineroTarjeta.getText().trim();
-          
+          String nombreTarjeta=campoNombreTarjeta.getText().trim();
+          for(int i=0; i<nombreTarjeta.length();i++)
+          {
+            char c=nombreTarjeta.charAt(i);
+            if(!((c>='A'&&c<='Z')||(c>='a'&&c<='z')||c==' '))
+            {
+              JOptionPane.showMessageDialog(null,"Nombre inválido (solo letras y espacios sin acentos).");
+              return;
+            }
+          }
           if(!rbCredito.isSelected()&&!rbDebito.isSelected())
           {
             JOptionPane.showMessageDialog(null,"Seleccione tipo de tarjeta (Crédito/Débito).");
@@ -825,29 +924,11 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
               return;
           }
 
-          double monto;
-          try
-          {
-            monto=Double.parseDouble(montoStr);
-            if(monto<=0)
-            {
-              JOptionPane.showMessageDialog(null,"Ingrese una cantidad válida.");
-              return;
-            }
-            if(monto<total)
-            {
-              JOptionPane.showMessageDialog(null,"Falta dinero.");
-              return;
-            }
-          }
-          catch(NumberFormatException ex)
-          {
-            JOptionPane.showMessageDialog(null,"Valor inválido en el monto.");
-            return;
-          }
+          double monto=total;
+          
 
           JOptionPane.showMessageDialog(null,"Pago exitoso");
-          campoCambio.setText(String.format("%.2f",monto-total));
+         
 
           // *** ABRIR RECIBO ***
           // Se pasan los 12 contadores de cantidad
@@ -913,6 +994,8 @@ class PantallaRecibo extends JFrame
         setLayout(null);
 
         JTextArea texto = new JTextArea();
+        Font fuenteRecibo = new Font("Monospaced", Font.PLAIN, 16); // Tamaño 16
+        texto.setFont(fuenteRecibo);
         texto.setEditable(false);
         JScrollPane scroll = new JScrollPane(texto);
         scroll.setBounds(20,20,450,480);
@@ -927,25 +1010,30 @@ class PantallaRecibo extends JFrame
         recibo.append("  Recibo generado: " + java.time.LocalDateTime.now() + "\n");
         recibo.append("------------------------------------\n");
         
-        if(campoNombre.getText().trim()!=null||campoRFC.getText().trim()!=null)
+        if(!campoNombre.getText().trim().isEmpty())
         {
           recibo.append("Nombre del usuario:"+campoNombre.getText().trim()+"\n");
+        }
+        if (!campoRFC.getText().trim().isEmpty())
+        {
           recibo.append("RFC del usuario: "+campoRFC.getText().trim()+"\n");
         }
+        if(!campoNombreTarjeta.getText().trim().isEmpty())
+          recibo.append("Nombre del usuario:"+campoNombreTarjeta.getText().trim()+"\n");
         recibo.append("Productos:\n");
         // Se usa c1 a c12 para imprimir las cantidades y precios
-        if(c1>0) recibo.append(String.format("Café x%d  $%.2f", c1, (double)(c1*80)-((c1*80)*0.16))+" + "+"$"+(c1*80)*0.16 +" IVA\n");
-        if(c2>0) recibo.append(String.format("Pan de Cazón x%d  $%.2f", c2, (double)(c2*100)-((c2*100)*0.16))+" + "+ "$"+(c2*100)*0.16 + "  IVA\n");
-        if(c3>0) recibo.append(String.format("Tamal de Chaya x%d  $%.2f", c3, (double)(c3*80)-((c3*80)*0.16))+" + "+ "$"+(c3*80)*0.16 + "  IVA\n");//80
+        if(c1>0) recibo.append(String.format("Café x%d  $%.2f + $%.2f IVA\n", c1, (double)(c1*80)-((c1*80)*0.16),(c1*80)*0.16));
+        if(c2>0) recibo.append(String.format("Pan de Cazón x%d  $%.2f + $%.2f IVA\n", c2, (double)(c2*100)-((c2*100)*0.16),(c2*100)*0.16 ));
+        if(c3>0) recibo.append(String.format("Tamal de Chaya x%d  $%.2f + $%.2f IVA\n", c3, (double)(c3*80)-((c3*80)*0.16),(c3*80)*0.16 ));//80
         if(c4>0) recibo.append(String.format("Cochinita Pibil x%d  $%.2f + $%.2f IVA\n", c4, (double)(c4*70)-((c4*70)*0.16),(c4*70)*0.16));//70
-        if(c5>0) recibo.append(String.format("Tacos Campechanos x%d  $%.2f", c5, (double)(c5*130)-((c5*130)*0.16))+" + "+ "$"+(c5*130)*0.16 + "  IVA\n");//130
-        if(c6>0) recibo.append(String.format("Torta BeefSteak x%d  $%.2f", c6, (double)(c6*130)-((c6*130)*0.16))+" + "+ "$"+(c6*130)*0.16 + "  IVA\n");//130
-        if(c7>0) recibo.append(String.format("Pampano Empapelado x%d  $%.2f", c7, (double)(c7*170)-((c7*170)*0.16))+" + "+ "$"+(c7*170)*0.16 + "  IVA\n");//170
-        if(c8>0) recibo.append(String.format("Tortas de Jamon Claveteado x%d  $%.2f", c8, (double)(c8*120)-((c8*120)*0.16))+" + "+ "$"+(c8*120)*0.16 + "  IVA\n");//120
-        if(c9>0) recibo.append(String.format("Camarones al Coco x%d  $%.2f", c9, (double)(c9*180)-((c9*180)*0.16))+" + "+ "$"+(c9*180)*0.16 + "  IVA\n");//180
-        if(c10>0) recibo.append(String.format("Frailes x%d  $%.2f", c10, (double)(c10*80)-((c10*80)*0.16))+" + "+ "$"+(c10*80)*0.16 + "  IVA\n");//80
-        if(c11>0) recibo.append(String.format("Flan de Rompope x%d $%.2f", c11, (double)(c11*80)-((c11*80)*0.16))+" + "+ "$"+(c11*80)*0.16 + "  IVA\n");//80
-        if(c12>0) recibo.append(String.format("Jamoncillos x%d $%.2f", c12, (double)(c12*180)-((c12*180)*0.16))+" + "+ "$"+(c12*180)*0.16 + "  IVA\n");//180
+        if(c5>0) recibo.append(String.format("Tacos Campechanos x%d  $%.2f + $%.2f IVA\n", c5, (double)(c5*130)-((c5*130)*0.16),(c5*130)*0.16));//130
+        if(c6>0) recibo.append(String.format("Torta BeefSteak x%d  $%.2f + $%.2f IVA\n", c6, (double)(c6*130)-((c6*130)*0.16),(c6*130)*0.16 ));//130
+        if(c7>0) recibo.append(String.format("Pampano Empapelado x%d  $%.2f + $%.2f IVA\n", c7, (double)(c7*170)-((c7*170)*0.16),(c7*170)*0.16 ));//170
+        if(c8>0) recibo.append(String.format("Tortas de Jamon Claveteado x%d  $%.2f + $%.2f IVA\n", c8, (double)(c8*120)-((c8*120)*0.16),(c8*120)*0.16 ));//120
+        if(c9>0) recibo.append(String.format("Camarones al Coco x%d  $%.2f + $%.2f IVA\n", c9, (double)(c9*180)-((c9*180)*0.16),(c9*180)*0.16 ));//180
+        if(c10>0) recibo.append(String.format("Frailes x%d  $%.2f + $%.2f IVA\n", c10, (double)(c10*80)-((c10*80)*0.16),(c10*80)*0.16 ));//80
+        if(c11>0) recibo.append(String.format("Flan de Rompope x%d $%.2f + $%.2f IVA\n", c11, (double)(c11*80)-((c11*80)*0.16),(c11*80)*0.16 ));//80
+        if(c12>0) recibo.append(String.format("Jamoncillos x%d $%.2f + $%.2f IVA\n", c12, (double)(c12*180)-((c12*180)*0.16),(c12*180)*0.16 ));//180
 
         recibo.append("------------------------------------\n");
         recibo.append(String.format("TOTAL: $%.2f\n", total));
@@ -953,8 +1041,16 @@ class PantallaRecibo extends JFrame
         recibo.append(String.format("CAMBIO: $%.2f\n", cambio));
         recibo.append("------------------------------------\n");
         recibo.append("¡Gracias por su compra!\n");
+        String codigo = "|| | || ||| | |||| | | || ||| |";
+        String numeroCodigo = "123456789012";
+
+        recibo.append("\nCódigo de barras:\n");
+        recibo.append(codigo + "\n");
+        recibo.append(numeroCodigo + "\n");
+        
 
         texto.setText(recibo.toString());
+
 
         guardar.addActionListener(new ActionListener()
         {
