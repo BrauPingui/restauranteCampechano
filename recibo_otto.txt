@@ -1,13 +1,17 @@
         *** FONDA DE OTTO ***
-  Recibo generado: 2025-11-19T13:23:24.790748135
+  Recibo generado: 2025-11-20T13:57:19.238427824
 ------------------------------------
-Nombre del usuario:Adriana
-RFC del usuario: vepa123456cue
+Nombre del usuario:Adriana Vega Palos
+RFC del usuario: bgre123456dfg
 Productos:
 Camarones al Coco x1  $151.20 + $28.80 IVA
 ------------------------------------
 TOTAL: $180.00
-PAGO:  $190.00
-CAMBIO: $10.00
+PAGO:  $180.00
+CAMBIO: $0.00
 ------------------------------------
 ¡Gracias por su compra!
+
+Código de barras:
+|| | || ||| | |||| | | || ||| |
+123456789012

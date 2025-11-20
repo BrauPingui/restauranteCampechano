@@ -22,7 +22,7 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
   private JPanel panelMenu,panelPostres;
   // Campos de texto se declaran a nivel de instancia, aunque se inicializan en PantallaPagar
   private JTextField campoEfectivo,campoCambio,campoNumeroTarjeta,campoCantidad1,campoCantidad2,campoCVV,camporVigencia,campoRFC,campoNombreTarjeta;
-  private JTextField campoNumeroCuenta,campoNombre,campoDineroTarjeta,campoDineroTransferencia;
+  private JTextField campoNumeroCuenta,campoNombre,campoDineroTarjeta,campoDineroTransferencia,campoRFCTarjeta,campoDireccionTarjeta,campoDireccionTransferencia;
   private ImageIcon ottoLogo;
   
   // Contadores de cantidad, NO de total monetario.
@@ -606,7 +606,7 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
   {
     private JRadioButton rbCredito,rbDebito;
     private ButtonGroup grupoTarjeta;
-    private JLabel etiquetaPagar,etiquetaCantidadTarjeta,etiquetaCantidadTransferencia, etiquetaEfectivo, etiquetaTarjeta,etiquetaTransferencia,etiquetaRFC;
+    private JLabel etiquetaPagar,etiquetaCantidadTarjeta,etiquetaCantidadTransferencia, etiquetaEfectivo, etiquetaTarjeta,etiquetaTransferencia,etiquetaRFC,etiquetaRFCTarjeta,etiquetaDireccionTarjeta,etiquetaDireccionTransferencia;
     private JLabel ingreseEfectivo,etiquetaNumeroTarjeta,etiquetaCVV,etiquetaVigencia, darCambio,etiquetaTotalPagar,etiquetaNumeroCuenta,etiquetaNombre,etiquetaNombreTarjeta;
     private JButton ingresarEfectivo,botonValidarTarjeta,botonValidarTransferencia;
 
@@ -627,6 +627,9 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
       campoNombre = new JTextField(20);
       campoDineroTransferencia = new JTextField(10);
       campoNombreTarjeta=new JTextField(10);
+      campoRFCTarjeta=new JTextField(13);
+      campoDireccionTarjeta=new JTextField(20);
+      campoDineroTransferencia=new JTextField(20);
       
       Font fuentePagar= new Font("Inter",Font.BOLD,18);
 
@@ -759,10 +762,38 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
       campoDineroTarjeta.setText(String.format("$%.2f",total));
       add(campoDineroTarjeta);
 
+      etiquetaRFCTarjeta= new JLabel("Ingrese su RFC");
+      etiquetaRFCTarjeta.setFont(fuentePagar);
+      etiquetaRFCTarjeta.setBounds(430,390,200,30);
+      add(etiquetaRFCTarjeta);
+      
+      campoRFCTarjeta.setFont(fuentePagar);
+      campoRFCTarjeta.setBounds(430,420,200,30);
+      add(campoRFCTarjeta);
+
+      etiquetaDireccionTarjeta= new JLabel("Ingrese su dirección");
+      etiquetaDireccionTarjeta.setFont(fuentePagar);
+      etiquetaDireccionTarjeta.setBounds(430,450,200,30);
+      add(etiquetaDireccionTarjeta);
+
+      campoDireccionTarjeta.setFont(fuentePagar);
+      campoDireccionTarjeta.setBounds(430,480,200,30);
+      add(campoDireccionTarjeta);
+
       campoRFC=new JTextField(13);
       campoRFC.setBounds(770,300,200,30);
       campoRFC.setFont(fuentePagar);
       add(campoRFC);
+
+      etiquetaDireccionTransferencia=new JLabel("Ingrese su dirección");
+      etiquetaDireccionTransferencia.setBounds(770,330,200,30);
+      etiquetaDireccionTransferencia.setFont(fuentePagar);
+      add(etiquetaDireccionTransferencia);
+
+      campoDireccionTransferencia=new JTextField(20);
+      campoDireccionTransferencia.setFont(fuentePagar);
+      campoDireccionTransferencia.setBounds(770,360,200,30);
+      add(campoDireccionTransferencia);
 
       campoEfectivo.setBounds(120,100,150,30);
       campoEfectivo.setFont(fuentePagar);
@@ -780,12 +811,12 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
       add(campoNombreTarjeta);
 
       botonValidarTransferencia=new JButton("Ingresar");
-      botonValidarTransferencia.setBounds(770,340,200,30);
+      botonValidarTransferencia.setBounds(770,450,200,30);
       botonValidarTransferencia.setFont(fuentePagar);
       add(botonValidarTransferencia);
 
       botonSalirPago= new JButton("Salir");
-      botonSalirPago.setBounds(770,500,200,30);
+      botonSalirPago.setBounds(770,600,200,30);
       botonSalirPago.setFont(fuentePagar);
       add(botonSalirPago);
       botonSalirPago.addActionListener(new ActionListener()
@@ -817,6 +848,12 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
           String nombre=campoNombre.getText().trim();
           String montoStrU=campoDineroTransferencia.getText().trim();
           String rfc=campoRFC.getText().trim();
+          String direccion=campoDireccionTransferencia.getText().trim();
+          if(direccion.isEmpty())
+          {
+            JOptionPane.showMessageDialog(null,"Ingrese su dirección");
+            return;
+          }
           if(!numeroCuenta.matches("\\d{18}"))
           {
             JOptionPane.showMessageDialog(null,"Número de cuenta inválido (debe tener 18 dígitos).");
@@ -867,7 +904,7 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
 
       botonValidarTarjeta= new JButton("Ingresar");
       botonValidarTarjeta.setFont(fuentePagar);
-      botonValidarTarjeta.setBounds(430,400,200,30);
+      botonValidarTarjeta.setBounds(430,550,200,30);
       add(botonValidarTarjeta);
       
       // Listener para tarjeta
@@ -880,6 +917,18 @@ public class P4MunguiaAngelCam extends JFrame implements ActionListener
           String vigencia=camporVigencia.getText().trim();
           String montoStr=campoDineroTarjeta.getText().trim();
           String nombreTarjeta=campoNombreTarjeta.getText().trim();
+          String direccion=campoDireccionTarjeta.getText().trim();
+          String rfc1=campoRFCTarjeta.getText().trim();
+          if(!rfc1.matches("[A-Za-z0-9]{13}"))
+          {
+            JOptionPane.showMessageDialog(null,"RFC inválido");
+            return;
+          }
+          if(direccion.isEmpty())
+          {
+            JOptionPane.showMessageDialog(null,"Ingrese su dirección");
+            return;
+          }
           for(int i=0; i<nombreTarjeta.length();i++)
           {
             char c=nombreTarjeta.charAt(i);
@@ -1014,12 +1063,20 @@ class PantallaRecibo extends JFrame
         {
           recibo.append("Nombre del usuario:"+campoNombre.getText().trim()+"\n");
         }
+        if(!campoNombreTarjeta.getText().trim().isEmpty())
+          recibo.append("Nombre del usuario:"+campoNombreTarjeta.getText().trim()+"\n");
         if (!campoRFC.getText().trim().isEmpty())
         {
           recibo.append("RFC del usuario: "+campoRFC.getText().trim()+"\n");
         }
-        if(!campoNombreTarjeta.getText().trim().isEmpty())
-          recibo.append("Nombre del usuario:"+campoNombreTarjeta.getText().trim()+"\n");
+        if(!campoRFCTarjeta.getText().trim().isEmpty())
+          recibo.append("RFC del usuario: "+campoRFCTarjeta.getText().trim()+"\n");
+        if(!campoDireccionTarjeta.getText().trim().isEmpty())
+          recibo.append("Dirección del usuario: "+campoDireccionTarjeta.getText().trim()+"\n");
+        if(!campoDireccionTransferencia.getText().trim().isEmpty())
+          recibo.append("Dirección del usuario: "+campoDireccionTransferencia.getText().trim()+"\n");
+       
+        
         recibo.append("Productos:\n");
         // Se usa c1 a c12 para imprimir las cantidades y precios
         if(c1>0) recibo.append(String.format("Café x%d  $%.2f + $%.2f IVA\n", c1, (double)(c1*80)-((c1*80)*0.16),(c1*80)*0.16));
